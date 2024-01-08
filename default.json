@@ -11,10 +11,7 @@
     "docker:pinDigests",
     "helpers:pinGitHubActionDigests"
   ],
-  "assignee": {
-    "description": "Assign PRs to <code>{{arg0}}</code>",
-    "assignees": ["{{arg0}}"]
-  },
+  "assignees": ["yfhyou"]
   "customManagers": [
     {
       "customType": "regex",
