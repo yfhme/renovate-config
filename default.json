@@ -1,0 +1,35 @@
+{
+  "configMigration": true,
+  "extends": [
+    # config:recommended
+    ":dependencyDashboard", # https://docs.renovatebot.com/presets-default/#dependencydashboard
+    ":semanticPrefixFixDepsChoreOthers", # https://docs.renovatebot.com/presets-default/#semanticprefixfixdepschoreothers
+    ":ignoreModulesAndTests", # https://docs.renovatebot.com/presets-default/#ignoremodulesandtests
+    "group:monorepos",
+    "group:recommended", # https://docs.renovatebot.com/presets-group/#grouprecommended
+    "replacements:all", # https://docs.renovatebot.com/presets-replacements/#replacementsall
+    "workarounds:all" # https://docs.renovatebot.com/presets-workarounds/#workaroundsall
+    # config:best-practices
+    "docker:pinDigests", # https://docs.renovatebot.com/presets-docker/#dockerpindigests
+    "helpers:pinGitHubActionDigests", # https://docs.renovatebot.com/presets-helpers/#helperspingithubactiondigests
+  ]
+  "assignee": {
+    "description": "Assign PRs to <code>{{arg0}}</code>",
+    "assignees": ["{{arg0}}"]
+  }
+  "customManagers": [
+    {
+      "customType": "regex",
+      "fileMatch": [
+        "(^|/|\\.)([Dd]ocker|[Cc]ontainer)file$",
+        "(^|/)([Dd]ocker|[Cc]ontainer)file[^/]*$"
+      ],
+      "matchStrings": [
+        "# renovate: datasource=(?<datasource>[a-z-.]+?) depName=(?<depName>[^\\s]+?)\\s(?:ENV|ARG) .+?_VERSION[ =]\"?(?<currentValue>.+?)\"?\\s"
+        ## should match the format shown below
+        ## # renovate: datasource=github-tags depName=openssl/openssl
+        ## ENV OPENSSL_VERSION=3.2.0
+      ]
+    }
+  ]
+}
