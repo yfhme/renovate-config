@@ -5,15 +5,13 @@
     "always",
     [
       "build",
-      "ci",
       "docs",
       "feat",
       "fix",
       "perf",
-      "refactor",
-      "revert",
       "style",
-      "test"
+      "test",
+      "chore"
     ]
   ],
   "type-case": [2, "always", "lower-case"],
