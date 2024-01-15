@@ -21,10 +21,10 @@ jobs:
           node --version
           npm --version
           npx commitlint --version
-      - name: Install commitlint
+      - name: Install commitlint and config-angular
         run: |
-          npm install conventional-changelog-conventionalcommits
-          npm install commitlint@latest
+          npm install --save-dev @commitlint/config-angular @commitlint/cli
+          echo "module.exports = {extends: ['@commitlint/config-angular']};" > commitlint.config.js
 
       - name: Validate current commit (last commit) with commitlint
         if: github.event_name == 'push'
